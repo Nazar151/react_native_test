@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import {FlatList, StyleSheet, Text, View} from 'react-native';
+import Todo from "./components/Todo";
 
 let todoList  =  [
   {id: 1, title: "do task #1", body: 'lorem ipsum dolor sit ameti', priority: 'high', isComplete: false},
@@ -18,28 +19,20 @@ export default function App() {
 <FlatList
     data={todoList}
     renderItem={ ({item}) => {
-      console.log(item)
-      return <View style={styles.item}>
-          <Text>{item.title} - {item.isComplete.toString() }</Text>
-      </View>
+
+      return <Todo item={item}/>
     }}
-    // keyExtractor={}
+    keyExtractor={item => {item.id}}
 />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-    item: {
-      height: 200,
-        marginTop: 10,
-        backgroundColor: 'silver',
-        border: 1,
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 });
